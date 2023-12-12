@@ -119,6 +119,10 @@ export class AuthenticationService {
     }
 
   }
+
+  getCurrentUser() {
+    return this.ngFireAuth.authState;
+  }
   
 
   

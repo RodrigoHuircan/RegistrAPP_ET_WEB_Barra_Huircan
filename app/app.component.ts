@@ -3,7 +3,6 @@ import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
 import { FirestoreService } from './services/firestore.service';
-import { LoginPage } from './pages/login/login.page';
 
 interface Docente {
   name: string;
@@ -31,19 +30,9 @@ export class AppComponent {
       redirecTo: '/home'
     },
     {
-      name: 'Nosotros',
-      icon: 'people-outline',
-      redirecTo: '/nosotros',
-    },
-    { 
-      name: 'Noticias',
-      icon: 'newspaper-outline',
-      redirecTo: '/api',
-    },
-    {
-      name: 'Mi Perfil',
-      icon: 'person-outline',
-      redirecTo: '/perfil'
+      name: 'Asignaturas',
+      icon: 'book-outline',
+      redirecTo: 'asignaturas'
     }
   ];
   login: boolean;
@@ -69,7 +58,7 @@ export class AppComponent {
   async logout() {
     try {
       await this.authService.signOut();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login-docente']);
       this.menu.close();
     } catch (error) {
       console.log('Error al cerrar sesión:', error);

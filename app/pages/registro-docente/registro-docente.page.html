@@ -33,14 +33,40 @@
         La contraseña es obligatoria.
       </div>
       <br>	
+    
+<!-- Otras secciones del formulario -->
 
-      <ion-button type="submit" [disabled]="!registroForm.valid" class="ion-padding" color="warning" fill="outline">
+<ion-button (click)="agregarAsignatura()" color="warning">Agregar Asignatura</ion-button>
+<br><br>
+
+<div *ngIf="registroForm.controls['asignaturas'].hasError('noAsignaturas') && (registroForm.dirty || registroForm.touched)"
+     style="color: red; font-size: small;" class="alert alert-danger">
+  Debes agregar al menos una asignatura.
+</div>
+
+<br>
+<div *ngFor="let asignaturaCtrl of asignaturas.controls; let i = index">
+  <ion-item>
+    <ion-label>Asignatura {{ i + 1 }}:</ion-label>
+    <ion-input [formControl]="asignaturaCtrl" type="text"></ion-input>
+    <ion-button (click)="quitarAsignatura(i)" color="warning">Quitar</ion-button>
+  </ion-item>
+
+  <div style="color:red; font-size: small;" *ngIf="asignaturaCtrl.hasError('noAsignaturas') && (asignaturaCtrl.dirty || asignaturaCtrl.touched)" class="alert alert-danger">
+    La asignatura es obligatoria.
+  </div>
+</div>
+<!-- Otras secciones del formulario -->
+
+
+    <ion-button type="submit" [disabled]="!registroForm.valid" class="ion-padding" color="warning" fill="outline">
         Crear
       </ion-button>
     </form>
+  
 
     <div class="signupLink">
-      <p>¿Ya estás registrado? <a style="color: #f6bd00e8" [routerLink]="['/login']">¡Ingresa!</a></p>
+      <p>¿Ya estás registrado? <a style="color: #f6bd00e8" [routerLink]="['/login-docente']">¡Ingresa!</a></p>
     </div>
   </div>
 </ion-content>

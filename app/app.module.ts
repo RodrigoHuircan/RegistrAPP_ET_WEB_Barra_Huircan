@@ -10,15 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from './authentication.service'; // Asegúrate de importar tu servicio
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AjustesComponent } from './ajustes/ajustes.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginPage } from './pages/login/login.page';
 import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
-  declarations: [AppComponent, AjustesComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

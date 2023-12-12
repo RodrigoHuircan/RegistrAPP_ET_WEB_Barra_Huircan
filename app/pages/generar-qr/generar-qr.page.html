@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content class="ion-padding ion-text-center">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Asistencia QR</ion-title>
@@ -13,20 +13,30 @@
 
 <!-- Utiliza *ngIf para mostrar u ocultar el input y el botón según la variable mostrarQR -->
 <ion-item *ngIf="!mostrarQR">
-  <ion-label position="floating">Asignatura - Sala</ion-label>
-  <ion-input [(ngModel)]="texto" [readonly]="mostrarQR" required></ion-input>
+  <ion-select [(ngModel)]="texto" placeholder="Selecciona un curso">
+    <ion-select-option *ngFor="let curso of cursos" [value]="curso">{{ curso }}</ion-select-option>
+  </ion-select>
 </ion-item>
-<ion-text *ngIf="!mostrarQR && mostrarError" color="danger">¡Necesitas rellenarlo para generar el QR!</ion-text>
+
+<ion-item *ngIf="!mostrarQR">
+  <ion-select [(ngModel)]="textoSala" placeholder="Selecciona una sala">
+    <ion-select-option *ngFor="let sala of salas" [value]="sala">{{ sala }}</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-text *ngIf="!mostrarQR && mostrarError" color="danger">
+  ¡Necesitas seleccionar un curso y una sala para generar el QR!
+</ion-text>
 
 <br><br>
 
 <!-- Mostrar el código QR solo si la variable mostrarQR es verdadera -->
-<qrcode *ngIf="mostrarQR" [qrdata]="texto" [width]="400"></qrcode>
+<qrcode *ngIf="mostrarQR" [qrdata]="texto + ' - ' + textoSala + ' - Docente: ' + nombre" [width]="400"></qrcode>
 
 <!-- Botón que activa la generación del código QR y valida que el campo no esté vacío -->
-<ion-button *ngIf="!mostrarQR" (click)="generarQR()">Generar QR</ion-button>
+<ion-button *ngIf="!mostrarQR" (click)="generarQR()" color="warning">Generar QR</ion-button>
 
 <!-- Botón "Regresar" que aparece después de generar el QR y redirige a otra página -->
-<ion-button *ngIf="mostrarQR" (click)="regresar()">Regresar</ion-button>
+<ion-button *ngIf="mostrarQR" (click)="regresar()" color="warning">Regresar</ion-button>
 </ion-content>
 

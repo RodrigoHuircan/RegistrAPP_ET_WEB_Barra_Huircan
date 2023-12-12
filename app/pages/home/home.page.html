@@ -12,20 +12,16 @@
 <br><br><br><br>
 
 <ion-content class="ion-padding">
-  <img src="/assets/icon/R.png"/>
+  <div class="ion-text-center">
+    <img src="/assets/icon/R.png"/>
+  </div>
 
   <br><br>
   <ion-title class="ion-text ion-color-light" style="text-align: center;">¡Hola! {{nombre}}</ion-title>
   <br><br>
 
-  <ion-button routerLink="/nosotros" expand="full" color="warning" shape="round">
-    Nosotros
-  </ion-button>
-  <ion-button routerLink="/api" expand="full" color="warning" style="margin-top: 10px;" shape="round">
-    Noticias
-  </ion-button>
-  <ion-button routerLink="/scan" expand="full" color="warning" style="margin-top: 10px;" shape="round">
-    Escanear QR
+  <ion-button routerLink="/generar-qr" expand="full" color="warning" style="margin-top: 10px;" shape="round">
+    Generar QR
   </ion-button>
 
 </ion-content>

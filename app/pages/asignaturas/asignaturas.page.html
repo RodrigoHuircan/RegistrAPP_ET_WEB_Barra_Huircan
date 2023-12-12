@@ -1,0 +1,23 @@
+<!-- ejemplo.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Agregar Asignatura
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Asegúrate de tener la directiva formGroup asociada correctamente -->
+  <form [formGroup]="asignaturaForm">
+
+    <!-- Asocia el formControlName a los controles del formulario -->
+    <ion-item>
+      <ion-label position="stacked">Nombre de la Asignatura</ion-label>
+      <ion-input formControlName="asignatura" placeholder="Ingrese el nombre de la asignatura"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="agregarAsignatura()" color="warning">Agregar Asignatura</ion-button>
+
+  </form>
+</ion-content>

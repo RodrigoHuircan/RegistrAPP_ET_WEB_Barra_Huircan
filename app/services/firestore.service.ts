@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +29,14 @@ export class FirestoreService {
   updateDoc(path: string, id: string, data: any){
     return this.firestore.collection(path).doc(id).update(data)
   }
+
+  async agregarAsignatura(userId: string, asignatura: string): Promise<void> {
+    const userDoc = this.firestore.collection('Usuarios').doc(userId);
+
+    // Actualizar el campo asignaturas del usuario
+    await userDoc.update({
+      asignaturas: firebase.firestore.FieldValue.arrayUnion(asignatura),
+    });
+  }
 }
+
